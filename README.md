@@ -1,6 +1,6 @@
 # Mbd_Tugas_SiasSmp
 
-Tahap 1: Analisis Kebutuhan
+## Tahap 1: Analisis Kebutuhan
 Analisis kebutuhan dilakukan untuk menentukan data apa saja yang akan disimpan dalam sistem, fungsi utama yang akan diimplementasikan, serta bagaimana entitas akan saling berhubungan.
 
 Kebutuhan Sistem:
@@ -12,7 +12,7 @@ Data Kelas: Menyimpan informasi mengenai kelas, wali kelas, dan daftar siswa di 
 Data Jadwal Pelajaran: Mengatur jadwal mata pelajaran untuk setiap kelas.
 Data Nilai: Menyimpan nilai siswa berdasarkan mata pelajaran.
 
-Tahap 2: Perancangan Model Konseptual
+### Tahap 2: Perancangan Model Konseptual
 Berikut adalah model konseptual menggunakan Entity-Relationship Diagram (ERD):
 
 Entitas:
@@ -27,8 +27,7 @@ Tahap 3: Perancangan Model Logikal
 Di tahap ini, entitas pada tahap konseptual diterjemahkan ke dalam bentuk tabel relasional.
 
 Tabel 1: Siswa
-sql
-Copy code
+```
 CREATE TABLE siswa (
     id_siswa INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(50) NOT NULL,
@@ -42,9 +41,11 @@ CREATE TABLE siswa (
     foto VARCHAR(100),
     FOREIGN KEY (kelas_id) REFERENCES kelas(id_kelas)
 );
+```
+
 Tabel 2: Guru
-sql
-Copy code
+
+```
 CREATE TABLE guru (
     id_guru INT AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(50) NOT NULL,
@@ -52,9 +53,10 @@ CREATE TABLE guru (
     telepon VARCHAR(15),
     alamat TEXT NOT NULL
 );
+
 Tabel 3: Kelas
-sql
-Copy code
+
+```
 CREATE TABLE kelas (
     id_kelas INT AUTO_INCREMENT PRIMARY KEY,
     nama_kelas VARCHAR(10) NOT NULL,
@@ -70,9 +72,11 @@ CREATE TABLE pelajaran (
     nama_pelajaran VARCHAR(50) NOT NULL,
     kkm INT NOT NULL
 );
+```
+
 Tabel 5: Jadwal
-sql
-Copy code
+
+```
 CREATE TABLE jadwal (
     id_jadwal INT AUTO_INCREMENT PRIMARY KEY,
     hari ENUM('Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu') NOT NULL,
@@ -84,9 +88,11 @@ CREATE TABLE jadwal (
     FOREIGN KEY (pelajaran_id) REFERENCES pelajaran(id_pelajaran),
     FOREIGN KEY (guru_id) REFERENCES guru(id_guru)
 );
+```
+
 Tabel 6: Nilai
-sql
-Copy code
+
+```
 CREATE TABLE nilai (
     id_nilai INT AUTO_INCREMENT PRIMARY KEY,
     siswa_id INT NOT NULL,
@@ -98,16 +104,15 @@ CREATE TABLE nilai (
     FOREIGN KEY (siswa_id) REFERENCES siswa(id_siswa),
     FOREIGN KEY (pelajaran_id) REFERENCES pelajaran(id_pelajaran)
 );
+```
 
-Tahap 4: Perancangan Model Fisik
+### Tahap 4: Perancangan Model Fisik
 Implementasi tabel ke dalam MySQL, termasuk pengaturan indeks dan tipe data. Contoh sudah diterapkan di tahap logikal dengan tipe data dan referensi kunci asing.
 
-Tahap 5: Implementasi
+### Tahap 5: Implementasi
 Setelah tabel dibuat di MySQL, data dapat dimasukkan menggunakan INSERT INTO atau melalui form aplikasi.
 
-Contoh Data Dummy:
-sql
-Copy code
+```
 INSERT INTO siswa (nama, nis, nisn, alamat, tanggal_lahir, kelas_id, orang_tua, telepon, foto) 
 VALUES ('Ali Ahmad', '12345', '9876543210', 'Jl. Merdeka No. 1', '2010-05-20', 1, 'Bapak Ahmad', '081234567890', 'ali.jpg');
 
@@ -119,8 +124,10 @@ VALUES ('VII-A', 1, 30);
 
 INSERT INTO pelajaran (nama_pelajaran, kkm) 
 VALUES ('Matematika', 75);
+```
 
-Tahap 6: Pengujian dan Optimasi
+### Tahap 6: Pengujian dan Optimasi
+
 Lakukan pengujian dengan memasukkan data melalui antarmuka aplikasi.
 Optimasi:
 Tambahkan indeks pada kolom yang sering digunakan untuk pencarian (misalnya nis, id_kelas).
