@@ -5,23 +5,23 @@ Analisis kebutuhan dilakukan untuk menentukan data apa saja yang akan disimpan d
 
 Kebutuhan Sistem:
 
-Data Siswa: Menyimpan data lengkap siswa, termasuk identitas, alamat, informasi orang tua, dan kelas.
-Data Guru: Menyimpan data identitas guru, mata pelajaran yang diajar, dan jadwal mengajar.
-Data Mata Pelajaran: Menyimpan daftar pelajaran yang diajarkan di sekolah.
-Data Kelas: Menyimpan informasi mengenai kelas, wali kelas, dan daftar siswa di dalamnya.
-Data Jadwal Pelajaran: Mengatur jadwal mata pelajaran untuk setiap kelas.
-Data Nilai: Menyimpan nilai siswa berdasarkan mata pelajaran.
+#### Data Siswa: Menyimpan data lengkap siswa, termasuk identitas, alamat, informasi orang tua, dan kelas.
+#### Data Guru: Menyimpan data identitas guru, mata pelajaran yang diajar, dan jadwal mengajar.
+#### Data Mata Pelajaran: Menyimpan daftar pelajaran yang diajarkan di sekolah.
+#### Data Kelas: Menyimpan informasi mengenai kelas, wali kelas, dan daftar siswa di dalamnya.
+#### Data Jadwal Pelajaran: Mengatur jadwal mata pelajaran untuk setiap kelas.
+#### Data Nilai: Menyimpan nilai siswa berdasarkan mata pelajaran.
 
 ### Tahap 2: Perancangan Model Konseptual
 Berikut adalah model konseptual menggunakan Entity-Relationship Diagram (ERD):
 
 Entitas:
-Siswa (ID_Siswa, Nama, NIS, NISN, Alamat, Tanggal_Lahir, Kelas, Orang_Tua, Telepon, Foto)
-Guru (ID_Guru, Nama, NIP, Mata_Pelajaran, Telepon, Alamat)
-Kelas (ID_Kelas, Nama_Kelas, Wali_Kelas, Kapasitas)
-Pelajaran (ID_Pelajaran, Nama_Pelajaran, KKM)
-Jadwal (ID_Jadwal, Hari, Jam, ID_Kelas, ID_Pelajaran, ID_Guru)
-Nilai (ID_Nilai, ID_Siswa, ID_Pelajaran, Semester, UTS, UAS, Rata-rata)
+#### Siswa (ID_Siswa, Nama, NIS, NISN, Alamat, Tanggal_Lahir, Kelas, Orang_Tua, Telepon, Foto)
+#### Guru (ID_Guru, Nama, NIP, Mata_Pelajaran, Telepon, Alamat)
+#### Kelas (ID_Kelas, Nama_Kelas, Wali_Kelas, Kapasitas)
+#### Pelajaran (ID_Pelajaran, Nama_Pelajaran, KKM)
+#### Jadwal (ID_Jadwal, Hari, Jam, ID_Kelas, ID_Pelajaran, ID_Guru)
+#### Nilai (ID_Nilai, ID_Siswa, ID_Pelajaran, Semester, UTS, UAS, Rata-rata)
 
 Tahap 3: Perancangan Model Logikal
 Di tahap ini, entitas pada tahap konseptual diterjemahkan ke dalam bentuk tabel relasional.
@@ -53,6 +53,7 @@ CREATE TABLE guru (
     telepon VARCHAR(15),
     alamat TEXT NOT NULL
 );
+```
 
 Tabel 3: Kelas
 
@@ -64,9 +65,11 @@ CREATE TABLE kelas (
     kapasitas INT DEFAULT 30,
     FOREIGN KEY (wali_kelas) REFERENCES guru(id_guru)
 );
+```
+
 Tabel 4: Pelajaran
-sql
-Copy code
+
+```
 CREATE TABLE pelajaran (
     id_pelajaran INT AUTO_INCREMENT PRIMARY KEY,
     nama_pelajaran VARCHAR(50) NOT NULL,
